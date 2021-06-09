@@ -1,21 +1,11 @@
 import express from 'express';
 import { Server, Socket } from 'socket.io';
+import { createServer } from 'http';
 import cors from 'cors';
 
-import { addPlayer, getPlayer, getPlayersInRoom, removePlayer } from './players'
+import router from './router'; 
 
-const port = process.env.PORT || 3333;
-
-const app = express();
-const server = app.listen(port, () => console.log(`listening on port ${port}`));
-
-app.use(cors())
-
-const io = new Server(server, {
-    cors: {
-        origin: true,
-    },
-});
+import { addPlayer, getPlayersInRoom, removePlayer } from './players'
 
 type IGrid = 'X' | 'O'
 
@@ -24,6 +14,19 @@ interface GridProps {
     Grid: IGrid;
     CurrentTurn: IGrid;
 }
+
+const port = process.env.PORT || 3333;
+
+const app = express();
+const server = createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: true,
+    },
+});
+
+app.use(cors());
+app.use(router);
 
 io.on('connection', (socket: Socket) => {
     
@@ -68,3 +71,5 @@ io.on('connection', (socket: Socket) => {
         removePlayer(socket.id);
     })
 })
+
+server.listen(port, () => console.log('Server has started.'));
