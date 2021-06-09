@@ -1,1 +1,1 @@
-web: node ./bin/api.ts
+web: node dist/api.js
