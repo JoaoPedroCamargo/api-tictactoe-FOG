@@ -25,6 +25,10 @@ interface GridProps {
     CurrentTurn: IGrid;
 }
 
+app.get('/', (req, res) => {
+    res.json({ message: "I'm Alive"});
+})
+
 io.on('connection', (socket: Socket) => {
     
     socket.on('joinRoom', (room: string, callback: Function) => {
