@@ -2,13 +2,13 @@
   "name": "tictactoe-fog-server",
   "version": "1.0.0",
   "description": "backend of the tictactoe-fog",
-  "main": "src/app.ts",
+  "main": "src/api.ts",
   "author": "Joao Pedro Camargo",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "node ./bin/app.ts",
-    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/app.ts"
+    "start": "node ./bin/api.ts",
+    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/api.ts"
   },
   "dependencies": {
     "@types/node": "^15.12.1",

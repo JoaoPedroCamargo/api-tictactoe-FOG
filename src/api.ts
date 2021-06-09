@@ -10,7 +10,6 @@ const app = express();
 const server = app.listen(port, () => console.log(`listening on port ${port}`));
 
 app.use(cors())
-app.use(express.json());
 
 const io = new Server(server, {
     cors: {
